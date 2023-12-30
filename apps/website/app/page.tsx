@@ -11,7 +11,6 @@ export default async function Index() {
           <div id="welcome">
             <h1>
               <span> Hello there, </span>
-              Welcome website 👋
             </h1>
           </div>
 
