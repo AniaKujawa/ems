@@ -1,7 +1,7 @@
 [build]
 builder = "NIXPACKS"
 buildCommand = "npx nx run frontend:build:production"
-watchPatterns = ["/frontend"]
+watchPatterns = ["/apps/frontend/**"]
 
 [deploy]
 numReplicas = 1
