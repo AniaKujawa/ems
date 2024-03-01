@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google';
-import { Menu } from '../components';
 import './styles.css';
 
 export const metadata = {
@@ -17,10 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <Menu />
-        <main className="container mx-auto">
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );
