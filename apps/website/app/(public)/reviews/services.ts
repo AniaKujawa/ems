@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { CreateReviewDto } from './types';
 
 type Review = {
   id: string;
@@ -39,4 +40,20 @@ export const fetchReviews = async () => {
   });
 
   return reviews;
+};
+
+export const createReviewInAirtable = async (review: CreateReviewDto) => {
+  const response = await fetch(
+    `${process.env.AIRTABLE_BASE_URL}/reviews`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.AIRTABLE_API_TOKEN}`,
+        'Content-type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify({ records: [{ fields: review }]})
+    },
+  );
+
+  return response;
 };
