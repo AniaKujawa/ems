@@ -16,7 +16,7 @@ export const CreateForm = () => {
   })
   const [isError, setIsError] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const { push, refresh } = useRouter();
+  const { push } = useRouter();
 
   const clientAction: SubmitHandler<CreateReviewDto> = async (data) => {
     const serverResult = await createReview(data);
@@ -25,7 +25,6 @@ export const CreateForm = () => {
       setIsError(true);
     } else {
       startTransition(() => push('/reviews'));
-      startTransition(() => refresh());
     }
   };
 
