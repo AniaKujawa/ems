@@ -2,6 +2,8 @@
 
 .nx/cache
 
+.env
+
 # compiled output
 dist
 tmp

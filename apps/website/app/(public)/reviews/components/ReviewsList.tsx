@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { format } from 'date-fns';
+
 import { fetchReviews } from '../services';
 
 
@@ -8,12 +10,12 @@ export default async function ReviewsList() {
   return (
     <ul>
       {reviews?.map((elem) => (
-        <li key={elem.id}>
+        <li key={elem.public_id}>
           <div>
-            <Link href={elem.id} className="text-blue-800">{elem.content}</Link>
+            <Link href={`reviews/${elem.public_id}`} className="text-blue-800">{elem.content}</Link>
           </div>
           <div className="font-light">{elem.author}</div>
-          <div className="mb-4 font-light">{elem.created_at}</div>
+          <div className="mb-4 font-light">{format(elem.created_at, 'dd.MM.yyyy HH:mm:ss')}</div>
         </li>
       ))}
     </ul>

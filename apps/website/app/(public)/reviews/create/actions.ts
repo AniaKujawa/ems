@@ -1,6 +1,6 @@
 'use server';
 import { revalidatePath } from 'next/cache';
-import { createReviewInAirtable } from '../services';
+import db from '@ems/prisma-client';
 
 import { CreateReviewDto, createReviewSchema } from '../types';
 
@@ -15,7 +15,10 @@ export const createReview = async (review: CreateReviewDto) => {
       status: 'error',
     };
   } else {
-    await createReviewInAirtable(review);
+    // await createReviewInAirtable(review);
+    await db.review.create({
+      data: review,
+    });
     revalidatePath('/reviews');
 
     return {
