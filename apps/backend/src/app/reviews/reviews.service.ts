@@ -1,10 +1,7 @@
-import { Injectable } from "@nestjs/common";
-
-type Review = {
-  id: number;
-  content: string;
-  rank: number;
-}
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { Review } from "./entities/review.entity";
+import { CreateReviewDto } from "./dtos/create-review.dto";
+import { UpdateReviewDto } from "./dtos/update-review.dto";
 
 const reviews: Review[] = [
   { id: 1, content: "great", rank: 5},
@@ -13,21 +10,30 @@ const reviews: Review[] = [
 
 @Injectable()
 export class ReviewsService {
-  getReviews(): Review[] {
+  getReviews(page?: number, offset?: number): Review[] {
     return reviews;
   }
 
-  getReview(id: number): Review {
-    return reviews[id];
+  getReview(id: string): Review {
+    const review = reviews.find(item => item.id === +id);
+    if(!review) {
+      // throw new HttpException('Review not found', HttpStatus.NOT_FOUND);
+      throw new NotFoundException('Review not found');
+    }
+    return review;
   }
 
-  createReview(data: Review) {
-    reviews.push(data);
-    return data;
+  createReview(createReviewDto: CreateReviewDto) {
+    // reviews.push(createReviewDto);
+    return createReviewDto;
   }
 
-  deleteReview(id: number) {
-    reviews.filter(review => review.id !== id);
+  updateReview(id: string, updateReviewDto: UpdateReviewDto) {
+    return updateReviewDto;
+  }
+
+  deleteReview(id: string) {
+    reviews.filter(review => review.id !== +id);
     return null;
   }
 }
