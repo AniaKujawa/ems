@@ -8,18 +8,18 @@ export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
   @Get()
-  getReviews(@Query() query) {
+  async getReviews(@Query() query) {
     const { page, offset } = query;
-    return this.reviewsService.getReviews(page, offset);
+    return await this.reviewsService.getReviews(page, offset);
   }
 
   @Get(':id')
-  getReview(@Param('id') id: string) {
-    return this.reviewsService.getReview(id);
+  async getReview(@Param('id') id: number) {
+    return await this.reviewsService.getReview(id);
   }
 
   @Delete(':id')
-  deleteReview(@Param('id') id: string) {
+  deleteReview(@Param('id') id: number) {
     return this.reviewsService.deleteReview(id);
   }
 
@@ -29,7 +29,7 @@ export class ReviewsController {
   }
 
   @Patch(':id')
-  updateReview(@Param('id') id: string, @Body() updateReviewDto: UpdateReviewDto) {
+  updateReview(@Param('id') id: number, @Body() updateReviewDto: UpdateReviewDto) {
     return this.reviewsService.updateReview(id, updateReviewDto);
   }
 }
