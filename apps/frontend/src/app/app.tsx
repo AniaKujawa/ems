@@ -4,6 +4,7 @@ import { ContactPage } from './pages/ContactPage';
 import { AboutPage } from './pages/AboutPage';
 import { EmployeesPage } from './pages/EmployeesPage';
 import { HomePage } from './pages/HomePage';
+import { CreateOfferPage } from './pages/CreateOfferPage';
 import { ROUTE } from './routes';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -45,6 +46,10 @@ export function App() {
         {
           path: ROUTE.EMPLOYEES,
           element: <ProtectedRoute user={user} element={<EmployeesPage />} />,
+        },
+        {
+          path: ROUTE.CREATE_OFFER,
+          element: <CreateOfferPage />,
         },
       ],
     },
