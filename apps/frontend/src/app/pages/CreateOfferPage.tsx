@@ -1,11 +1,11 @@
 import { Header } from '@ems/common-ui';
-import { CreateOffer } from '../features/offers';
+import { CreateOffer, createOffer } from '../features/offers';
 
 export const CreateOfferPage = () => {
   return (
     <div>
       <Header>Offers</Header>
-      <CreateOffer />
+      <CreateOffer createOffer={createOffer} />
     </div>
   );
 };

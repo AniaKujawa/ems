@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage';
 import { CreateOfferPage } from './pages/CreateOfferPage';
 import { ROUTE } from './routes';
 import { RegistrationPage } from './pages/RegistrationPage';
+import { OffersPage } from './pages/OffersPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useState } from 'react';
 
@@ -50,6 +51,10 @@ export function App() {
         {
           path: ROUTE.CREATE_OFFER,
           element: <CreateOfferPage />,
+        },
+        {
+          path: ROUTE.OFFERS,
+          element: <OffersPage />,
         },
       ],
     },

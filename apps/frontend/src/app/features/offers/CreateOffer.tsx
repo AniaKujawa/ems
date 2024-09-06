@@ -3,14 +3,21 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CreateOfferDto, createOfferSchema } from "./types";
+import { useNavigate } from "react-router-dom";
+import { ROUTE } from "../../routes";
 
-export const CreateOffer = () => {
+type Props = {
+  createOffer: (data: CreateOfferDto) => Promise<void>;
+}
+export const CreateOffer = ({ createOffer }: Props) => {
   const { handleSubmit, register, formState: { errors, isValid, isSubmitting } } = useForm<CreateOfferDto>({
     resolver: zodResolver(createOfferSchema)
   });
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<CreateOfferDto> = async (data) => {
-    console.log(data);
+    await createOffer(data);
+    navigate(ROUTE.OFFERS);
   };
 
   return (

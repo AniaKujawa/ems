@@ -31,7 +31,7 @@ export class ReviewsService {
   }
 
   deleteReview(id: Review['id']) {
-    reviews.filter(review => review.id !== id);
+    // reviews.filter(review => review.id !== id);
     return null;
   }
 }

@@ -8,6 +8,7 @@
 dist
 tmp
 /out-tsc
+/volumes/
 
 # dependencies
 node_modules
